@@ -1,0 +1,594 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Noto+Naskh+Arabic:wght@400..700&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* ============================= */
+/* ☀️ LIGHT MODE (default)        */
+/* ============================= */
+:root {
+  /* ---------- TYPOGRAPHY ---------- */
+  --font-family: "Poppins", sans-serif;
+  --font-size-base: 0.7rem;
+  --font-size-base2: 0.8rem;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --line-height-base: 1.6;
+  --heading-line-height: 1.2;
+
+  /* ---------- HEADING CLAMP ---------- */
+  --heading-h1: clamp(2rem, 5vw + 0.5rem, 3rem);
+  --heading-h2: clamp(1.5rem, 4vw + 0.5rem, 2.25rem);
+  --heading-h3: clamp(1rem, 3vw + 0.5rem, 1.75rem);
+
+  /* ---------- SPACING SYSTEM ---------- */
+  --spacing-xxs: 1px;
+  --spacing-xs: 0.8rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-xxl: 4rem;
+  --spacing-xxxl: 5rem;
+
+  /* ---------- COLORS (Blue Theme) ---------- */
+  --color-bg: hsl(210, 20%, 98%);
+  --color-surface: hsl(0, 0%, 100%);
+  --color-card: hsl(210, 25%, 97%);
+
+  --color-text: hsl(210, 15%, 15%);
+  --color-text-muted: hsl(210, 10%, 45%);
+  --color-heading: hsl(210, 20%, 10%);
+
+  --color-primary: hsl(216, 98%, 52%);
+  --color-primary-hover: hsl(216, 98%, 45%);
+  --color-secondary: hsl(210, 16%, 92%);
+
+  --color-border: hsl(210, 15%, 85%);
+  --color-input-bg: hsl(0, 0%, 100%);
+  --color-input-border: hsl(210, 15%, 80%);
+  --color-placeholder: hsl(210, 10%, 60%);
+
+  --button-bg: var(--color-primary);
+  --button-bg-hover: var(--color-primary-hover);
+  --button-text: hsl(0, 0%, 100%);
+
+  /* ---------- EFFECTS ---------- */
+  --shadow-soft: 0 4px 20px hsl(0 0% 0% / 0.08);
+  --shadow-strong: 0 8px 30px hsl(0 0% 0% / 0.12);
+
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+}
+
+/* ============================= */
+/* 🌙 DARK MODE (Auto via System) */
+/* ============================= */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: hsl(220, 20%, 10%);
+    --color-surface: hsl(220, 20%, 15%);
+    --color-card: hsl(220, 20%, 18%);
+
+    --color-text: hsl(0, 0%, 95%);
+    --color-text-muted: hsl(0, 0%, 75%);
+    --color-heading: hsl(0, 0%, 100%);
+
+    --color-primary: hsl(216, 98%, 60%);
+    --color-primary-hover: hsl(216, 98%, 65%);
+    --color-secondary: hsl(220, 15%, 25%);
+
+    --color-border: hsl(220, 15%, 30%);
+    --color-input-bg: hsl(220, 15%, 20%);
+    --color-input-border: hsl(220, 15%, 35%);
+    --color-placeholder: hsl(0, 0%, 70%);
+
+    --button-bg: var(--color-primary);
+    --button-bg-hover: var(--color-primary-hover);
+    --button-text: hsl(0, 0%, 100%);
+
+    --shadow-soft: 0 4px 20px hsl(0 0% 0% / 0.25);
+    --shadow-strong: 0 8px 30px hsl(0 0% 0% / 0.35);
+  }
+}
+
+/* Universal reset for box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Reset margin, padding, and font inheritance */
+* {
+  margin: 0;
+  padding: 0;
+  font: inherit;
+}
+
+/* Apply background + transition when switching themes */
+body {
+  background: var(--color-bg);
+}
+
+/* Ensure form elements inherit font properly */
+input,
+textarea,
+button,
+select {
+  font: inherit;
+  color: inherit;
+  border: none;
+  outline: none;
+  font-size: var(--font-size-base);
+}
+input {
+  width: 100%;
+  padding: var(--spacing-xs);
+  background: var(--color-bg);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+}
+input::placeholder {
+  color: var(--color-placeholder);
+}
+input:focus {
+  border: 1px solid var(--color-primary);
+}
+
+button {
+  width: 100%;
+  padding: var(--spacing-xs);
+  background: var(--color-bg);
+  border: 1px solid var(--color-input-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+button:hover {
+  background: var(--button-bg-hover);
+}
+
+/* Reset anchor tag decoration and set color using variables */
+a {
+  color: var(--color-text);
+  text-decoration: none;
+  transition: color var(--transition-duration) ease-in-out;
+}
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+/* Media elements scale responsively */
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+h1 {
+  font-size: var(--heading-h2);
+  color: var(--color-heading);
+  line-height: var(--heading-line-height);
+}
+
+p {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+/* ----------------------
+    main-container styling
+---------------------- */
+.main-container {
+  width: 100%;
+  max-width: 100dvw;
+  height: auto;
+  min-height: 100dvh;
+}
+
+/* ----------------------
+    wrapper styling
+---------------------- */
+.wrapper {
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ----------------------
+    left-container styling
+---------------------- */
+.auth-left {
+  width: 45%;
+  height: 100vh;
+  background: linear-gradient(
+      hsl(216, 100%, 40%, 0.4),
+      hsl(216, 100%, 40%, 0.9)
+    ),
+    url(../images/bg.jpg) no-repeat center center / cover;
+}
+.auth-left-wrapper {
+  width: 100%;
+  height: 100%;
+  padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+.logo {
+  align-self: flex-start;
+  font-weight: var(--font-weight-regular);
+}
+.logo h1 {
+  font-size: 1.5rem;
+  color: hsl(0, 0%, 100%);
+}
+
+.auth-left-content {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xxxl);
+  margin-bottom: 6rem;
+}
+.ui-image {
+  width: 18rem;
+  height: 18rem;
+  background: url(../images/rev-1.png) no-repeat center center / cover;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+}
+.ui-image1 {
+  width: 7rem;
+  height: 8rem;
+  background: url(../images/rev2.png) no-repeat center center / cover;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  position: absolute;
+  left: -3.5rem;
+  bottom: 2rem;
+}
+.ui-image3 {
+  width: 12rem;
+  height: 3rem;
+  background: url(../images/rev3.png) no-repeat center center / cover;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  position: absolute;
+  right: -5rem;
+  top: 2rem;
+}
+
+.left-bottom-text {
+  width: fit-content;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+.left-bottom-text h1 {
+  font-weight: var(--font-weight-medium);
+  color: hsl(0, 0%, 100%);
+  text-align: center;
+}
+.left-bottom-text p {
+  width: 80%;
+  text-align: center;
+  opacity: 0.7;
+  color: hsl(0, 0%, 100%);
+}
+
+/* ----------------------
+    right-container styling
+---------------------- */
+.auth-right {
+  width: 55%;
+  height: 100vh;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-sm) 0;
+}
+
+/* ---------------------- 
+    auth-form styling
+---------------------- */
+
+.auth-form {
+  width: 55%;
+  height: auto;
+  padding: 0 var(--spacing-md);
+  /* border: 1px solid var(--color-border); */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-md);
+  margin-top: 7rem;
+}
+.header-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xxs);
+}
+.header-container h3 {
+  font-size: var(--heading-h3);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--spacing-xxs);
+}
+.header-container p {
+  font-size: var(--font-size-base);
+  font-weight: normal;
+}
+
+.social-buttons {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+.social-buttons button {
+  flex: 1 1 100%;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+button .icon {
+  width: 1.2rem;
+  height: 1.2rem;
+  color: var(--color-text);
+}
+
+.divider {
+  width: 100%;
+  height: auto;
+  text-align: center;
+  position: relative;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-base);
+}
+
+.divider span {
+  background: var(--color-bg);
+  padding: 0 var(--spacing-sm);
+  position: relative;
+  z-index: 1;
+}
+
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--color-border);
+  transform: translateY(-50%);
+}
+
+.input-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+}
+
+.input-group {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+button.sign-up {
+  background: var(--button-bg);
+  color: var(--button-text);
+}
+button.sign-up:hover {
+  background: var(--button-bg-hover);
+}
+
+.sign-in-text a {
+  font-weight: var(--font-weight-semibold);
+}
+
+.bottom-text-container {
+  width: 100%;
+  height: auto;
+  align-self: flex-end;
+  padding: 0 var(--spacing-xl);
+}
+.bottom-text {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* ----------------------
+    Media Querrie styling
+---------------------- */
+@media (max-width: 1024px) {
+  .auth-form {
+    width: 90%;
+    height: auto;
+    padding: 0 var(--spacing-md);
+    /* border: 1px solid var(--color-border); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-top: 0;
+  }
+  .auth-left-content {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-xl);
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 1024px) {
+  .auth-left-wrapper {
+    width: 100%;
+    height: 100%;
+    padding: var(--spacing-md);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+  .logo {
+    align-self: flex-start;
+    font-weight: var(--font-weight-regular);
+    position: absolute;
+    top: 2rem;
+    left: 2rem;
+  }
+  .left-bottom-text p {
+    width: 100%;
+    text-align: center;
+    opacity: 0.7;
+    color: hsl(0, 0%, 100%);
+  }
+  .ui-image3 {
+    width: 12rem;
+    height: 3rem;
+    background: url(../images/rev3.png) no-repeat center center / cover;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-soft);
+    position: absolute;
+    right: -2rem;
+    top: 2rem;
+  }
+  .auth-right {
+    width: 55%;
+    height: 100vh;
+    background: var(--color-bg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: var(--spacing-sm) 0;
+    gap: var(--spacing-xl);
+  }
+  .auth-form {
+    width: 90%;
+    height: auto;
+    padding: 0 var(--spacing-md);
+    /* border: 1px solid var(--color-border); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-top: 0;
+  }
+  .bottom-text-container {
+    width: 100%;
+    height: auto;
+    padding: 0 var(--spacing-xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    place-content: center;
+  }
+  .wrapper {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .auth-left {
+    display: none;
+  }
+  .auth-right {
+    width: 90%;
+    height: auto;
+    gap: var(--spacing-lg);
+  }
+  .auth-form {
+    width: 100%;
+    height: auto;
+    padding: var(--spacing-md);
+    margin-top: 2rem;
+  }
+  .header-container p {
+    font-size: var(--font-size-base2);
+    font-weight: normal;
+  }
+  .social-buttons {
+    flex-direction: column;
+  }
+  .social-buttons button {
+    flex: 1 1 100%;
+    background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-sm);
+  }
+}
+
+/* 🌞 Light mode: keep icon dark */
+@media (prefers-color-scheme: light) {
+  .apple-btn img {
+    filter: invert(0); /* keeps icon black */
+  }
+}
+
+/* 🌙 Dark mode: make icon white */
+@media (prefers-color-scheme: dark) {
+  .apple-btn img {
+    filter: invert(1); /* makes icon white */
+  }
+}
