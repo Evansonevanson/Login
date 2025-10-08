@@ -457,9 +457,9 @@ input[type="password"] {
   gap: 5px;
 }
 input[type="checkbox"] {
-  outline: none;
-  border: none;
-  background: var(--color-bg);
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
 }
 
 .input-group span {
