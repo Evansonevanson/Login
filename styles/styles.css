@@ -131,6 +131,14 @@ input {
   color: var(--color-text);
   font-size: 1rem;
 }
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  background-color: var(--color-bg) !important;
+  color: var(--color-text) !important;
+  -webkit-text-fill-color: var(--color-text) !important;
+  transition: background-color 5000s ease-in-out 0s; /* prevents flashing */
+}
 input::placeholder {
   color: var(--color-placeholder);
   font-size: var(--font-size-base);
@@ -409,6 +417,9 @@ button .icon {
   justify-content: center;
   gap: var(--spacing-sm);
 }
+input[type="password"] {
+  position: relative;
+}
 
 .input-group {
   width: 100%;
@@ -417,9 +428,55 @@ button .icon {
   justify-content: center;
   align-items: center;
   gap: var(--spacing-sm);
+  position: relative;
 }
-textarea {
-  font-size: 1rem;
+.password-group {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.remember-container {
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.6rem;
+  padding: 0 0.5rem;
+}
+.remember {
+  width: fit-content;
+  height: auto;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 5px;
+}
+input[type="checkbox"] {
+  outline: none;
+  border: none;
+  background: var(--color-bg);
+}
+
+.input-group span {
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  opacity: 0.6;
+  cursor: pointer;
+  z-index: 1;
+}
+.input-group span:hover {
+  color: var(--color-primary-hover);
 }
 
 button.sign-up {
@@ -525,7 +582,6 @@ button.sign-up:hover {
     width: 90%;
     height: auto;
     padding: 0 var(--spacing-md);
-    /* border: 1px solid var(--color-border); */
     display: flex;
     flex-direction: column;
     justify-content: center;
