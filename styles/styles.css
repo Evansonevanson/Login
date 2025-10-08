@@ -133,6 +133,7 @@ input {
 }
 input::placeholder {
   color: var(--color-placeholder);
+  font-size: var(--font-size-base);
 }
 input:focus {
   border: 1px solid var(--color-primary);
