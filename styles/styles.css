@@ -457,8 +457,8 @@ input[type="password"] {
   gap: 5px;
 }
 input[type="checkbox"] {
-  width: 10px;
-  height: 10px;
+  width: 0.7rem;
+  height: 0.7rem;
   cursor: pointer;
 }
 
